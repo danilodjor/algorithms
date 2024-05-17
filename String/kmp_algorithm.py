@@ -1,5 +1,12 @@
 def suffix_table(s: str)-> list:
-    """Returns an array arr of length |s| whose each position i contains the length of the longest proper prefix of s that is also its suffix."""
+    """
+    Args:
+        s (str): Input string for which the suffix list is computed.
+
+    Returns:
+        list: Array of length |s| whose each position i contains the length of the longest proper prefix of s that is also its suffix.
+    """
+
     arr = [0]*len(s)
     length = 0
 
@@ -13,15 +20,21 @@ def suffix_table(s: str)-> list:
             if s[i] == s[length]:
                 length += 1
             arr[i] = length
-        
 
     return arr
 
-def string_match(t: str, s: str) -> list:
+
+def kmp_match(t: str, s: str) -> list:
+    """Finds the starting indices of pattern s found in text s.
+
+    Args:
+        t (str): Text that is to be searched for appearance of string s. 
+        s (str): String pattern that is searched in text t.
+
+    Returns:
+        list: List of indices in text t where pattern s begins.
     """
-    param: t - Text that is to be searched for appearance of string s.
-    param: s - String pattern that is searched in text t.
-    """
+    
 
     assert len(s) <= len(t), "Input error: Pattern string must be shorter than text string."
 
@@ -43,5 +56,12 @@ def string_match(t: str, s: str) -> list:
     return pattern_pos
 
 
-ans = string_match("ABCABABDABCDABDABCDABD ABCDABD", "ABCDABD")
-print(ans)
+def main():
+    text = "ABCABABDABCDABDABCDABD ABCDABD"
+    pattern = "ABCDABD"
+    ans = kmp_match(text, pattern)
+    print(ans)
+
+
+if __name__ == '__main__':
+    main()
